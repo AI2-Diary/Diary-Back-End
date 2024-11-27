@@ -39,6 +39,9 @@ dependencies {
     // mysql
     runtimeOnly 'com.mysql:mysql-connector-j'
 
+    // AWS S3
+    implementation 'io.awspring.cloud:spring-cloud-starter-aws:2.4.4'
+
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
 }
