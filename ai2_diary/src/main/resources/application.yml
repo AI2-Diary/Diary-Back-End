@@ -2,5 +2,5 @@ spring:
   profiles:
     active: ["db", "swagger"]
 openai:
-  api-key: "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"
+  api-key: "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"
   api-url: "https://api.openai.com/v1"
