@@ -1,19 +1,21 @@
 package com.example.ai2_diary.Service;
 
 import com.example.ai2_diary.diary.Diary;
+import com.example.ai2_diary.dto.AiRes;
 import com.example.ai2_diary.dto.CreateDiaryReq;
 import com.example.ai2_diary.dto.DiaryDetailRes;
 import com.example.ai2_diary.dto.DiaryRes;
+import com.example.ai2_diary.gpt.GptService;
 import com.example.ai2_diary.repository.DiaryRepository;
 import com.example.ai2_diary.s3.application.FileService;
 import com.example.global.common.SuccessResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
@@ -22,6 +24,7 @@ import java.util.stream.Collectors;
 public class DiaryService {
 
 //    private final OpenAIClient openAIClient;
+    private final GptService gptService;
     private final FileService fileService;
     private final DiaryRepository diaryRepository;
 
@@ -56,6 +59,16 @@ public class DiaryService {
                 .imgUrl(diary.getImgUrl())
                 .build();
         return SuccessResponse.of(diaryDetailRes);
+    }
+
+    public SuccessResponse<AiRes> changeDiary(String content) throws JsonProcessingException {
+        String changedContent = gptService.getAssistantMsg(content);
+        String imgUrl = gptService.getImage(changedContent);
+        AiRes aiRes = AiRes.builder()
+                .content(changedContent)
+                .imgUrl(imgUrl)
+                .build();
+        return SuccessResponse.of(aiRes);
     }
 
 //    public Diary saveDiary(Diary diary) {

@@ -1,10 +1,12 @@
 package com.example.ai2_diary.Controller;
 
 import com.example.ai2_diary.Service.DiaryService;
+import com.example.ai2_diary.dto.AiRes;
 import com.example.ai2_diary.dto.CreateDiaryReq;
 import com.example.ai2_diary.dto.DiaryDetailRes;
 import com.example.ai2_diary.dto.DiaryRes;
 import com.example.global.common.SuccessResponse;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +35,11 @@ public class DiaryController {
     @GetMapping("/{diaryId}")
     public ResponseEntity<SuccessResponse<DiaryDetailRes>> findDiary(@PathVariable("diaryId") Long diaryId) {
         return ResponseEntity.ok(diaryService.findDiary(diaryId));
+    }
+
+    @GetMapping ("/ai")
+    public ResponseEntity<SuccessResponse<AiRes>> changeDiary(@RequestParam(value = "content") String content) throws JsonProcessingException {
+        return ResponseEntity.ok(diaryService.changeDiary(content));
     }
 
 //    public String generateImage(@PathVariable Long id) {
