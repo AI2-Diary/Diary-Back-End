@@ -5,6 +5,7 @@ import com.example.ai2_diary.dto.CreateDiaryReq;
 import com.example.ai2_diary.dto.DiaryDetailRes;
 import com.example.ai2_diary.dto.DiaryRes;
 import com.example.ai2_diary.repository.DiaryRepository;
+import com.example.ai2_diary.s3.application.FileService;
 import com.example.global.common.SuccessResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import java.util.stream.Collectors;
 public class DiaryService {
 
 //    private final OpenAIClient openAIClient;
+    private final FileService fileService;
     private final DiaryRepository diaryRepository;
 
     @Transactional
