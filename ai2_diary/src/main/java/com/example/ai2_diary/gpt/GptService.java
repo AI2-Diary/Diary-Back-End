@@ -80,12 +80,14 @@ public class GptService {
         bodyMap.put("prompt",
                 userMsg +
                         """
-                        This was my diary. Draw a picture based on this diary. 
-                        Visually express the picture to reflect the mood and main scenes of the diary. 
+                        This was my diary. Draw a picture based on this diary.
+                        Visually express the picture to reflect the mood and main scenes of the diary.
                         Draw a picture that feels like a character illustration with a focus on people.
-                        Be sure to draw my picture. 
-                        First, I need to draw a person in the center, and this person is me. 
+                        Be sure to draw my picture.
+                        First, I need to draw a person in the center, and this person is me.
                         Then, you select the situation and location and draw it according to the contents of the diary.
+                        
+                        You must draw a person, and you must draw the background of the situation that person went through.
                         """);
         bodyMap.put("n", 1); // 생성할 이미지 수
         bodyMap.put("size", "1024x1024"); // 이미지 크기
